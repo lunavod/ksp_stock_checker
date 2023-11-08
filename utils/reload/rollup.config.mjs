@@ -1,6 +1,6 @@
-import typescript from '@rollup/plugin-typescript';
+import typescript from '@rollup/plugin-typescript'
 
-const plugins = [typescript()];
+const plugins = [typescript()]
 
 export default [
   {
@@ -25,4 +25,4 @@ export default [
       file: 'utils/reload/injections/view.js',
     },
   },
-];
+]

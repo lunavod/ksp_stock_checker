@@ -5,31 +5,31 @@ export enum StorageType {
   Session = 'session',
 }
 
-type ValueOrUpdate<D> = D | ((prev: D) => Promise<D> | D);
+type ValueOrUpdate<D> = D | ((prev: D) => Promise<D> | D)
 
 export type BaseStorage<D> = {
-  get: () => Promise<D>;
-  set: (value: ValueOrUpdate<D>) => Promise<void>;
-  getSnapshot: () => D | null;
-  subscribe: (listener: () => void) => () => void;
-};
+  get: () => Promise<D>
+  set: (value: ValueOrUpdate<D>) => Promise<void>
+  getSnapshot: () => D | null
+  subscribe: (listener: () => void) => () => void
+}
 
 export function createStorage<D>(key: string, fallback: D, config?: { storageType?: StorageType }): BaseStorage<D> {
-  let cache: D | null = null;
-  let listeners: Array<() => void> = [];
-  const storageType = config?.storageType ?? StorageType.Local;
+  let cache: D | null = null
+  let listeners: Array<() => void> = []
+  const storageType = config?.storageType ?? StorageType.Local
 
   const _getDataFromStorage = async (): Promise<D> => {
     if (chrome.storage[storageType] === undefined) {
-      throw new Error(`Check your storage permission into manifest.json: ${storageType} is not defined`);
+      throw new Error(`Check your storage permission into manifest.json: ${storageType} is not defined`)
     }
-    const value = await chrome.storage[storageType].get([key]);
-    return value[key] ?? fallback;
-  };
+    const value = await chrome.storage[storageType].get([key])
+    return value[key] ?? fallback
+  }
 
   const _emitChange = () => {
-    listeners.forEach(listener => listener());
-  };
+    listeners.forEach(listener => listener())
+  }
 
   const set = async (valueOrUpdate: ValueOrUpdate<D>) => {
     if (typeof valueOrUpdate === 'function') {
@@ -37,39 +37,39 @@ export function createStorage<D>(key: string, fallback: D, config?: { storageTyp
       if (valueOrUpdate.hasOwnProperty('then')) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        cache = await valueOrUpdate(cache);
+        cache = await valueOrUpdate(cache)
       } else {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        cache = valueOrUpdate(cache);
+        cache = valueOrUpdate(cache)
       }
     } else {
-      cache = valueOrUpdate;
+      cache = valueOrUpdate
     }
-    await chrome.storage[storageType].set({ [key]: cache });
-    _emitChange();
-  };
+    await chrome.storage[storageType].set({ [key]: cache })
+    _emitChange()
+  }
 
   const subscribe = (listener: () => void) => {
-    listeners = [...listeners, listener];
+    listeners = [...listeners, listener]
     return () => {
-      listeners = listeners.filter(l => l !== listener);
-    };
-  };
+      listeners = listeners.filter(l => l !== listener)
+    }
+  }
 
   const getSnapshot = () => {
-    return cache;
-  };
+    return cache
+  }
 
   _getDataFromStorage().then(data => {
-    cache = data;
-    _emitChange();
-  });
+    cache = data
+    _emitChange()
+  })
 
   return {
     get: _getDataFromStorage,
     set,
     getSnapshot,
     subscribe,
-  };
+  }
 }

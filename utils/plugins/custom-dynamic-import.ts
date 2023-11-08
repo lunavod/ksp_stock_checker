@@ -1,4 +1,4 @@
-import type { PluginOption } from 'vite';
+import type { PluginOption } from 'vite'
 
 export default function customDynamicImport(): PluginOption {
   return {
@@ -8,12 +8,12 @@ export default function customDynamicImport(): PluginOption {
         return {
           left: `import(browser.runtime.getURL('./') + `,
           right: ".split('../').join(''));",
-        };
+        }
       }
       return {
         left: 'import(',
         right: ')',
-      };
+      }
     },
-  };
+  }
 }
