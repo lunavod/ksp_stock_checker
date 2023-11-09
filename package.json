@@ -1,11 +1,11 @@
 {
-  "name": "chrome-extension-boilerplate-react-vite",
-  "version": "0.0.1",
-  "description": "chrome extension boilerplate",
+  "name": "ksp-stock-checker",
+  "version": "0.0.2",
+  "description": "Extension that allows you to check stock availability in selected stores",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite.git"
+    "url": "https://github.com/lunavod/ksp_stock_checker.git"
   },
   "scripts": {
     "build": "tsc --noEmit && vite build",
@@ -69,6 +69,7 @@
     "ts-loader": "9.5.0",
     "tslib": "2.6.2",
     "typescript": "5.2.2",
+    "unplugin-fonts": "^1.0.3",
     "vite": "3.2.7",
     "ws": "8.14.2"
   },

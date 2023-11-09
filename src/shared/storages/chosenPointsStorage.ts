@@ -15,7 +15,11 @@ const chosenPointsStorage: PointsStorage = {
   togglePoint: (point: string) => {
     storage.set(currentPoints => {
       const points = new Set(currentPoints)
-      points.add(point)
+      if (points.has(point)) {
+        points.delete(point)
+      } else {
+        points.add(point)
+      }
       return [...points]
     })
   },

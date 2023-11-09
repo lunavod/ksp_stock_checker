@@ -4,10 +4,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  text-align: center;
+  text-align: left;
   height: 100%;
   padding: 10px;
-  background-color: #282c34;
+  background-color: white;
+  color: black;
+  overflow-y: auto;
 }
 
 .App-logo {
@@ -31,15 +33,229 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App a {
+  color: #0b6bb6;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App button {
+  width: 100%;
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  box-sizing: border-box;
+  transition:
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: 'Assistant', 'Rubik', Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+  border-radius: 4px;
+  text-transform: none;
+  align-items: center;
+  vertical-align: middle;
+  -moz-appearance: none;
+  justify-content: center;
+  text-decoration: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  color: #fff;
+  background-color: #0b6bb6;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.App button:hover {
+  background-color: #074a7f;
+}
+
+.App button:disabled {
+  cursor: default;
+  pointer-events: none;
+  background-color: #b5b2b2;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(245, 245, 250, 0.7);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0b6bb6;
+  border-radius: 20px;
+  border: 3px solid transparent;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.logo .big {
+  color: #fdc70f;
+  font-size: 2.6rem;
+  line-height: 2.6rem;
+  font-weight: bold;
+}
+
+.logo .twoPart {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.logo .twoPart span {
+  font-size: 1.1rem;
+  line-height: 1.1rem;
+  font-weight: 500;
+  color: #016fd0;
+}
+
+.heading {
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 14px;
+}
+
+.heading.lined {
+  border-bottom: 1px solid #b5b2b2;
+  padding-bottom: 4px;
+}
+
+.error {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  font-size: 14px;
+  margin-top: 6px;
+  color: #ff0000;
+}
+
+.info {
+  line-height: 1;
+  font-size: 14px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  /* color: grey; */
+}
+
+.info .count {
+  font-weight: bold;
+  color: black;
+}
+
+.pointsChooserWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  border-bottom: 1px solid #b5b2b2;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.pointsListToggle {
+  font-size: 14px;
+  cursor: pointer;
+  color: #0b6bb6;
+}
+
+.chosenPointsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.chosenPoint {
+  color: #fff;
+  display: flex;
+  padding: 3px 15px;
+  background: #0b6bb6;
+  align-items: center;
+  border-radius: 60px;
+  text-transform: uppercase;
+}
+
+.pointsList {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.pointElement {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  text-align: left;
+}
+
+.checkButton {
+  margin-top: 12px;
+}
+
+.noProductsPlaceholder {
+  margin-top: 6px;
+}
+
+.productsList {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+}
+
+.product {
+  display: flex;
+  gap: 10px;
+  padding: 4px 0;
+  border-bottom: 1px solid #d7d7d8;
+  align-items: flex-start;
+}
+
+.product img {
+  width: 64px;
+}
+
+.product .productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.product .productInfo a {
+  font-size: 1.1em;
+}
+
+.product .productInfo .price {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.product .productInfo .points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.product .productInfo .point {
+  /* color: #fff;
+  cursor: pointer;
+  display: flex;
+  padding: 3px 15px;
+  background: #0b6bb6;
+  align-items: center;
+  border-radius: 60px;
+  text-transform: uppercase; */
+  /* color: #0b6bb6; */
 }
